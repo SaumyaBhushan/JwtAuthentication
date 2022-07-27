@@ -4,10 +4,15 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.cglib.core.internal.Function;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class JwtUtil {
@@ -49,19 +54,20 @@ public class JwtUtil {
     //2. Sign the JWT using the HS512 algorithm and secret key.
     //3. According to JWS Compact Serialization(https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1)
     //   compaction of the JWT to a URL-safe string
-    public String generateToken(UserDetails user) {
 
-
-        return Jwts.builder()
-                .setSubject(String.format( user.getUsername()))
-                .setIssuer("jwt")
-                .claim("roles", user.getAuthorities().toString())
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis()))
-                .signWith(SignatureAlgorithm.HS512,secret)
+    private String doGenerateToken(Map<String, Object> claims, String subject) {
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .commaSeparatedStringToAuthorityList("ROLE_USER");
+        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+                .claim("roles", grantedAuthorities.toString())
+                .setExpiration(new Date(System.currentTimeMillis() +JWT_TOKEN_VALIDITY*1000))
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
-
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        return doGenerateToken(claims, userDetails.getUsername());
+    }
     //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);

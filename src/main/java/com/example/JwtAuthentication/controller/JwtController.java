@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 public class JwtController {
 
@@ -31,6 +33,7 @@ public class JwtController {
 
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+
 
         System.out.println("Inside Controller");
         System.out.println(jwtRequest);
