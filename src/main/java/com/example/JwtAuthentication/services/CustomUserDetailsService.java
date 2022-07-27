@@ -1,25 +1,29 @@
 package com.example.JwtAuthentication.services;
 
-import com.example.JwtAuthentication.model.CustomUserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 //    @Autowired
 
-    @Override
-    public CustomUserDetails loadUserByUsername(String userDetails) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userDetails) throws UsernameNotFoundException {
         if(userDetails.equals("Gaurav")){
-            List<String> authorites = new ArrayList<>();
-            authorites.add("user");
-            authorites.add("Admin");
-              return new CustomUserDetails("gaurav@gmail.com","Gaurav","Gaurav");
+//            List<String> authorites = new ArrayList<>();
+            Set<GrantedAuthority> authorities = new HashSet<>();
+            authorities.add(new SimpleGrantedAuthority("Admin"));
+            authorities.add(new SimpleGrantedAuthority("User"));
+
+//
+
+            return new User("Gaurav","Gaurav123", Collections.unmodifiableCollection(authorities));
         }else {
             throw new UsernameNotFoundException("Invalid User");
         }
