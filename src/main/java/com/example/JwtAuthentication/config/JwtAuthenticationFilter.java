@@ -1,7 +1,7 @@
 package com.example.JwtAuthentication.config;
 
 import com.example.JwtAuthentication.helper.JwtUtil;
-import com.example.JwtAuthentication.services.CustomUserDetailsService;
+ import com.example.JwtAuthentication.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +32,10 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
 
         String requestTokenHeader = request.getHeader("Authorization");
         String username=null;
+        String email=null;
+        String role=null;
+
+
         String jwtToken=null;
 
         //null and format
@@ -42,6 +46,9 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
             try{
 
                 username = this.jwtUtil.getUsernameFromToken(jwtToken);
+                email = this.jwtUtil.getEmailFromToken(jwtToken);
+                role = this.jwtUtil.getRoleFromToken(jwtToken);
+
 
 
             }catch (Exception e)
@@ -49,10 +56,11 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
                 e.printStackTrace();
             }
 
-            if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
+            if(username!=null && email!=null && role!=null &&SecurityContextHolder.getContext().getAuthentication()==null)
             {
 
-                UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
+                UserDetails userDetails =   this.customUserDetailsService.loadUserByUsername(username);
+
                 //security
 
 
