@@ -25,6 +25,12 @@ public class JwtUtil {
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
+    public String getEmailFromToken(String token) {
+        return getClaimFromToken(token, Claims::getSubject);
+    }
+    public String getRoleFromToken(String token) {
+        return getClaimFromToken(token, Claims::getSubject);
+    }
 
     //retrieve expiration date from jwt token
     public Date getExpirationDateFromToken(String token) {
