@@ -16,14 +16,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String userDetails) throws UsernameNotFoundException {
         if(userDetails.equals("Gaurav")){
-//            List<String> authorites = new ArrayList<>();
             Set<GrantedAuthority> authorities = new HashSet<>();
-            authorities.add(new SimpleGrantedAuthority("Admin"));
-            authorities.add(new SimpleGrantedAuthority("User"));
-
-//
-
-            return new User("Gaurav","Gaurav123", Collections.unmodifiableCollection(authorities));
+         //   authorities.add(new SimpleGrantedAuthority("Admin"));
+            authorities.add(new SimpleGrantedAuthority("USER"));
+              return new User("Gaurav","Gaurav123", Collections.unmodifiableCollection(authorities));
         }else {
             throw new UsernameNotFoundException("Invalid User");
         }

@@ -35,7 +35,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/token").permitAll()
-//                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers("/user").hasAuthority("USER")
+                .antMatchers("/getusers").hasAuthority("ADMIN")
+
+                //                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
