@@ -24,9 +24,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtAuthenticationFilter jwtFilter;
-//
-//    @Autowired
-//    private JwtAuthenticationEntryPoint entryPoint;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
