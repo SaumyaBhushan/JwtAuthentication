@@ -14,13 +14,23 @@ public class Order {
     private String orderID;
     private String CustomerID;
     private Product[] Cart;
+    private String DeliveryMode;
     private Delivery Delivery;
     private String OrderStatus;
     private String CustomerName;
     private String CustomerEmail;
     private String Currency;
+    private String Voucher;
     private Date OrderDate;
     private Double OrderPrice;
     private Double FinalOrderPrice;
+
+    public boolean applyVoucher(String Voucher) {
+        this.applyVoucher(Voucher);
+        // Code to apply the voutcher
+        this.setFinalOrderPrice(this.getOrderPrice()/2);
+        return true;
+    }
+
 
 }
