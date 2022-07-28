@@ -2,14 +2,16 @@ package com.example.jwtauthentication.serviceimpl;
 
 import com.example.jwtauthentication.model.Order;
 import com.example.jwtauthentication.services.OrderSearch;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderSearchimpl implements OrderSearch {
 
 
 
     @Override
     public Order getOrderDetailsbyID(String orderId) {
-        return null;
+        return new Order();
     }
 
     @Override
