@@ -38,6 +38,14 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").hasAuthority("USER")
                 .antMatchers("/getusers").hasAuthority("ADMIN")
 
+                .antMatchers("/getOrderDetailsByOrderID").hasAuthority("USER")
+                .antMatchers("/searchOrderAll").hasAuthority("USER")
+                .antMatchers("/cancelOrderById").hasAuthority("ADMIN")
+                .antMatchers("/applyVoucherToOrder").hasAuthority("ADMIN")
+
+
+
+
                 //                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
