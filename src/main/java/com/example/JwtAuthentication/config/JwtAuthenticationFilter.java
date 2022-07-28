@@ -1,7 +1,7 @@
 package com.example.JwtAuthentication.config;
 
 import com.example.JwtAuthentication.helper.JwtUtil;
- import com.example.JwtAuthentication.services.CustomUserDetailsService;
+ import com.example.JwtAuthentication.serviceimpl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
