@@ -1,4 +1,4 @@
-package com.example.JwtAuthentication.serviceimpl;
+package com.example.jwtauthentication.serviceimpl;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

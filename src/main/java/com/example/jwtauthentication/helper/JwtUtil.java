@@ -1,4 +1,4 @@
-package com.example.JwtAuthentication.helper;
+package com.example.jwtauthentication.helper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

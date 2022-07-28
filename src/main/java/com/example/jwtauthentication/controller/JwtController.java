@@ -1,9 +1,9 @@
-package com.example.JwtAuthentication.controller;
+package com.example.jwtauthentication.controller;
 
-import com.example.JwtAuthentication.helper.JwtUtil;
-import com.example.JwtAuthentication.model.JwtRequest;
-import com.example.JwtAuthentication.model.JwtResponse;
-import com.example.JwtAuthentication.serviceimpl.CustomUserDetailsService;
+import com.example.jwtauthentication.helper.JwtUtil;
+import com.example.jwtauthentication.model.JwtRequest;
+import com.example.jwtauthentication.model.JwtResponse;
+import com.example.jwtauthentication.serviceimpl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 @RestController
 public class JwtController {
