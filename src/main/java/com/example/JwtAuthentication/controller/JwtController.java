@@ -3,7 +3,7 @@ package com.example.JwtAuthentication.controller;
 import com.example.JwtAuthentication.helper.JwtUtil;
 import com.example.JwtAuthentication.model.JwtRequest;
 import com.example.JwtAuthentication.model.JwtResponse;
-import com.example.JwtAuthentication.services.CustomUserDetailsService;
+import com.example.JwtAuthentication.serviceimpl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
