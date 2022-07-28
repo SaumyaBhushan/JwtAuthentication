@@ -1,4 +1,4 @@
-package com.example.JwtAuthentication.model;
+package com.example.jwtauthentication.model;
 
 public class JwtResponse {
     String token;

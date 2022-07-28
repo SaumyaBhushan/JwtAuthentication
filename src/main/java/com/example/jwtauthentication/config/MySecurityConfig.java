@@ -1,6 +1,6 @@
-package com.example.JwtAuthentication.config;
+package com.example.jwtauthentication.config;
 
- import com.example.JwtAuthentication.serviceimpl.CustomUserDetailsService;
+ import com.example.jwtauthentication.serviceimpl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
