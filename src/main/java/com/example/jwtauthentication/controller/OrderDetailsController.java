@@ -4,6 +4,7 @@ import com.example.jwtauthentication.model.Order;
 import com.example.jwtauthentication.serviceimpl.OrderSearchimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ public class OrderDetailsController {
     OrderSearchimpl orderSearchimpl;
 
     @GetMapping("/getOrderDetailsByOrderID/{orderId}")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Order> searchOrderDetailsById(@PathVariable String orderId)
     {
         Order currentorder = orderSearchimpl.getOrderDetailsbyID(orderId);
@@ -30,6 +32,7 @@ public class OrderDetailsController {
     }
 
     @GetMapping("/searchOrderAll")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<List<Order>> searchOrderAll(@RequestParam(value = "orderDate" ,required = false)String orderDate,
                                                       @RequestParam(value = "orderNumber",required = false)String orderNumber,
                                                       @RequestParam(value = "customerName",required = false)String customerName,
@@ -51,6 +54,7 @@ public class OrderDetailsController {
     }
 
     @GetMapping("/cancelOrderById/{orderId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> cancelOrderById(@PathVariable String orderId)
     {
         String status= orderSearchimpl.cancelOrderById(orderId);
@@ -62,6 +66,7 @@ public class OrderDetailsController {
     }
 
     @GetMapping("/applyVoucherToOrder")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> searchOrderAll(@RequestParam(value = "voucher" ,required = true)String voucher,
                                                       @RequestParam(value = "orderID",required = true)String orderID
     )

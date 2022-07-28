@@ -1,0 +1,14 @@
+
+_
+java:S1120"DMake this line start after 2 spaces to indent the code consistently.(Ò¯÷žûÿÿÿÿ
+W
+java:S1106
+"AMove this left curly brace to the beginning of next line of code.(À˜Ž¹
+4
+java:S1451"&Add or update the header of this file.
+o	java:S116"URename this field "DeliveryID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¯÷žûÿÿÿÿ
+l	java:S116"WRename this field "DeliveryType" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼üÐû
+o	java:S116"ZRename this field "DeliveryAddress" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ìºë
+q	java:S116"WRename this field "DeliveryMode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â¢”Éýÿÿÿÿ
+s	java:S116"YRename this field "TrackingNumber" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÜ›ôÿÿÿÿÿ
+k	java:S116"VRename this field "CourierType" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àÞ£é
