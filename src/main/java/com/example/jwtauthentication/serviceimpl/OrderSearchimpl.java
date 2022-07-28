@@ -2,20 +2,30 @@ package com.example.jwtauthentication.serviceimpl;
 
 import com.example.jwtauthentication.model.Order;
 import com.example.jwtauthentication.services.OrderSearch;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderSearchimpl implements OrderSearch {
 
-
+    RestTemplate restTemplateForOrder=new RestTemplate();
 
     @Override
     public Order getOrderDetailsbyID(String orderId) {
-        return new Order();
+                return new Order();
     }
 
     @Override
-    public Order[] getOrderDetailsbyCustomerID() {
+    public Order[] getOrderDetailsbyCustomerID()
+    {
         return new Order[0];
     }
 
@@ -51,15 +61,28 @@ public class OrderSearchimpl implements OrderSearch {
 
     @Override
     public String applyVoucher(String voucher,String orderId) {
-        Order o=this.getOrderDetailsbyID(orderId);
-        o.applyVoucher(voucher);
-        return "Success";
+     //   Order o=this.getOrderDetailsbyID(orderId);
+     //   o.applyVoucher(voucher);
+     //   return "Success";
+
+        String url = "http://localhost:8080/restServiceForApplyingVoucherToOrder/{urlParameter}?queryParameter= {queryParameter}";
+        RestTemplate template = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity requestEntity = new HttpEntity<>(headers);
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("voucher",voucher);
+        uriVariables.put("orderId", orderId);
+        ResponseEntity<Map> response = template.exchange(url, HttpMethod.GET, requestEntity, Map.class, uriVariables);
+        return response.getBody().toString();
+
     }
     @Override
     public String cancelOrderById(String orderId) {
-        Order o=this.getOrderDetailsbyID(orderId);
+        /*Order o=this.getOrderDetailsbyID(orderId);
         o.setOrderStatus("Cancel");
-        return "Success";
+        return "Success";*/
+            String confirmation= restTemplateForOrder.getForObject("http://localhost:8080/CancleOrderCore"+orderId, String.class);
+            return confirmation;
     }
 
 }
